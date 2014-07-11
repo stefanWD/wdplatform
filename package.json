@@ -1,0 +1,26 @@
+{
+  "name": "WD",
+  "version": "0.0.0",
+  "description": "WD",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.0.2",
+    "chai": "^1.9.1",
+    "ejs": "^1.0.0",
+    "debug": "^0.7.4",
+    "express": "^4.2.0",
+    "cookie-parser": "^1.0.1",
+    "jade": "^1.3.1",
+    "less-middleware": "^1.0.3",
+    "morgan": "^1.0.1",
+    "nodemon": "^1.2.1",
+    "static-favicon": "^1.0.2"
+  },
+  "devDependencies": {"nodemon":"1.2.1"},
+  "scripts": {
+    "start": "nodemon app.js local",
+    "test":"./node_modules/.bin/mocha"
+  },
+  "author": "Stefan",
+  "license": "none"
+}
