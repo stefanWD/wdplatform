@@ -1,5 +1,6 @@
 var collections={
-		1:"InvitesUser"
+		1:"User",
+		2:"InvitesUser"
 	};
 
 function Model(db,collectionNo){

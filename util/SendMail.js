@@ -1,5 +1,4 @@
 var nodemailer=require('nodemailer'),
-emailVerify=require('email-existence'),
 config=require('../configuration/configuration.js')();
 
 var smtpTransport = nodemailer.createTransport("SMTP",{
@@ -17,15 +16,10 @@ var mailOptions = {
     html: "<b><a href='http://localhost:8080'>Join WIre Detlta!</a>  </b>" // html body
 }
 
-function sendMail(key,email,callback)
+function sendMail(email,callback)
 {
 	mailOptions.to=email;
-/*    console.log(email);
-	emailVerify.check('stefan.p.wiredelta@gmail.com', function(err,resp){
-         console.log('res: '+resp);
-     });
-	*/
-    buildMessage(key);
+    buildMessage();
 	smtpTransport.sendMail(mailOptions, function(error, response){
         
         try{if(error){
@@ -44,9 +38,8 @@ function sendMail(key,email,callback)
    
 }
 
-function buildMessage(key){
-mailOptions.html="<b><a style='color:red' href='http://"+config.host+":"+config.port+"/"+key+"'>Join WIre Detlta!</a>  </b>";
-console.log("http://"+config.host+":"+config.port+"/"+key+"");
+function buildMessage(){
+mailOptions.html="<b><a style='color:red' href='http://"+config.host+":"+config.port+"'>You have been invited to to join WD..........................!</a>  </b>";
 }
 
 module.exports=sendMail;

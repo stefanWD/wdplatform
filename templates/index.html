@@ -1,24 +1,43 @@
-<!Doctype html>
-<html>
+<!DOCTYPE html>
+<html class="full" lang="en">
+
 <head>
-	<title>WD</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>WD Platform Landing Page</title>
+    	<script type="text/javascript"  src='http://code.jquery.com/jquery-1.11.1.min.js'></script>
+
+    <link href="/stylesheets/style.css" rel="stylesheet">
 </head>
+
 <body>
-	<div id='headder'>
+    <div class="container-fluid" id="text">
+        <div class="row">
+            <div class="col-lg-6 col-sm-12" style="float:right">
+                <p id="title">WD PLATFORM</p>
+		        <p id="description">In WD Platform, the best designers choose you, <br>so you can worry about all the small stuff</p>
+		        <br><br>
+		        <div align="center">
+		        	<a href="/auth/google" id="signup"><img src="/images/signup.jpg"></a>
+		        	<a href="#" id="onway"><img src="/images/onway.jpg"></a>
+		        </div>
+            </div>
+        </div>
+    </div>
 
-	</div>
-	<div id='content'>
-	<a href="/auth/google">Sign In with Google</a><br />
 
-	<input id='email'/>
-	<button id='btnIU'>Invite User</button>
-	</div>
-	<div id='footer'>
-	</div>
-	<script type="text/javascript"  src='http://code.jquery.com/jquery-1.11.1.min.js'></script>
-<script type="text/javascript"  src='/javascripts/main.js'></script>
-
-
+	<script>
+		$(document).ready(function(){
+			$("#signup, #onway").click(function()	{
+		    	$("#signup").toggle();
+		    	$("#onway").toggle();
+		  	});
+		});
+	</script>
 </body>
 
 </html>
+

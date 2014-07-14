@@ -5,6 +5,9 @@ function DataSenderHTML(res,template){
 	dataSender.call(this,res);
 	this.template=template;
 }
+
+DataSenderHTML.prototype=Object.create(dataSender.prototype);
+DataSenderHTML.prototype.costructor=DataSenderHTML;
 Object.defineProperties(DataSenderHTML.prototype,{
 send:{
 	value:function(data){

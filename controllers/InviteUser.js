@@ -8,39 +8,40 @@ function InviteUser(req,res,next){
 	controller.call(this,req,res,next);
 }
 
-InviteUser.prototype=controller.prototype;
+InviteUser.prototype=Object.create(controller.prototype);
 InviteUser.prototype.constructor=InviteUser;
 
 Object.defineProperty(InviteUser.prototype,"run",{
 value:function(){
-		try{var email=this.req.query.email;
 	var view= new dataSender(this.res);
+	try{var email=this.req.query.email;
 	var m = new model(this.req.db,1);
 	if(this.req.accepts('application/json')=='application/json')
-		{var shasum = crypto.createHash('sha1');
-			var id=shasum.update(email).digest('hex');
-			m.save({_id:id,email:email,date:new Date()},function(error){
-				if(/\S+@gmail.com/.test(email)===true&&error===undefined){
+		{if(/\S+@gmail.com/.test(email)===true)
+		{m.save({email:email,date:new Date()},function(err){
+			if(err===undefined){
 				var reso=this.res;
-					mail(id,email,function(status,message){	
+					mail(email,function(status,message){	
 						if(status!==200)
-							{m.remove({_id:id},function(){
+							{m.remove({email:email},function(){
 							view.send(status,{message:message});
 							});
 							}
 							else
-
 						view.send(status,{message:message});
 
 					});
 				}
 				else
 				{
-					view.send(202,{message:"Email is not valid!"});			
+				view.sendErrorSystem();			
 				}
 			});
-	}
-		
+		}
+		else{
+					view.send(202,{message:"Email is not valid, please use a gmail account."});			
+				}
+	}		
 	else
 	{
 		view.sendErrorContent();
@@ -48,8 +49,7 @@ value:function(){
 	}
 	catch(err)
 		{console.log(err);
-			view.send(500,{message:"Error while processing the request! please try again!"});
-		
+		view.sendErrorSystem();
 	}
 		
 },

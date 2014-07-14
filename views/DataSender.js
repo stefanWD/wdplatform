@@ -10,7 +10,7 @@ send:{
 	}
 	catch(err){
 		console.log(err);
-		this.res.json(500,{message:'Error while sending data!'});
+		this.sendErrorSystem();
 	}
 	},
 	enumerable:true,
@@ -18,12 +18,19 @@ send:{
 	},
 sendErrorContent:{
 	value:function(){
-	this.res.json(415,{message:'Content Type not supported by requester!'});
+	this.res.json(415,{message:'Content Type not supported by requester.'});
 	
 	},
 	enumerable:true,
 	configurable:false
-	}
+	},
+sendErrorSystem:{
+	value:function(){
+	this.res.json(500,{message:'Request can not be processed, please try later.'})
+	},
+	enumerable:true,
+	configurable:false
+}
 
 });
 module.exports=DataSender;

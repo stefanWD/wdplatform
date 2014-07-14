@@ -10,9 +10,10 @@ var config= require('./configuration/configuration.js')();
 // request's HTML
 var index =require('./controllers/Index.js');
 var test= require('./controllers/Test.js');
+
 //HTML
 ///request's JSON
-
+var firstLogIn=require('./controllers/FirstLogIn.js');
 var inviteUser= require('./controllers/InviteUser.js');
 // request's JSON
 var mongodb=null;
@@ -91,9 +92,13 @@ app.get('/auth/google/callback',
     res.redirect('/log-in');
   });
 
-app.all('/first-login',function(req,res,next){
-this.res.send('Hello!');
+app.all('/first-login',ensureAuthenticated,function(req,res,next){
+var page= new firstLogIn(req,res,next);
+page.run();
+
+
 });
+
 
 app.all('/invite-user',ensureAuthenticated,function(req,res,next){
   var page= new inviteUser(req,res,next);
@@ -101,22 +106,18 @@ app.all('/invite-user',ensureAuthenticated,function(req,res,next){
 });
 
 
-app.all('/log-in',ensureAuthenticated,function(req,res,next){
+app.all('/log-in',function(req,res,next){
   var page= new test(req,res,next);
   page.run();
 
 });
-app.all('/log-out',function(req,res,next){
+app.all('/log-out',ensureAuthenticated,function(req,res,next){
   req.logout();
   res.redirect('/');
 
 });
 
 
-app.all('/projects',function(req,res,next){
-  var page= new logIn(req,res,next);
-  page.run();
-});
 
 app.all('/',function(req,res,next){
   var page = new index(req,res,next);
