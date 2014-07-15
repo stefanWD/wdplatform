@@ -3,7 +3,7 @@
  $('#btnIU').on('click',function(){
  	var email={email:$("#email").val()};
 $.ajax('http://localhost:8080/invite-user',{
-	dataType:"html",
+	dataType:"json",
 		contentType:"applicaiton/json",
 		data:email,
 	success:function(data,xhr,xhr1){
@@ -14,3 +14,6 @@ $.ajax('http://localhost:8080/invite-user',{
 	}
 });
  });
+
+
+ 

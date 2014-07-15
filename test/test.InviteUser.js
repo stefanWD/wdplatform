@@ -44,7 +44,7 @@ res.json=function(status,message){
 var next= function(){};
 var page= new model(req,res,next);
 page.run();
- },200);
+ },400);
 
 });
 
@@ -63,7 +63,7 @@ res.json=function(status,message){
 var next= function(){};
 var page= new model(req,res,next);
 page.run();
- },200);
+ },400);
 
 });
 
@@ -85,7 +85,7 @@ res.json=function(status,message){
 var next= function(){};
 var page= new model(req,res,next);
 page.run();
- },200);
+ },400);
 
 });
 

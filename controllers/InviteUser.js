@@ -15,15 +15,15 @@ Object.defineProperty(InviteUser.prototype,"run",{
 value:function(){
 	var view= new dataSender(this.res);
 	try{var email=this.req.query.email;
-	var m = new model(this.req.db,1);
-	if(this.req.accepts('application/json')=='application/json')
+	var m = new model(this.req.db,2);
+	if(this.req.accepts('application/json')==='application/json')
 		{if(/\S+@gmail.com/.test(email)===true)
-		{m.save({email:email,date:new Date()},function(err){
+		{m.save({_id:email,date:(new Date())},function(err){
 			if(err===undefined){
 				var reso=this.res;
 					mail(email,function(status,message){	
 						if(status!==200)
-							{m.remove({email:email},function(){
+							{m.remove({_id:email},function(){
 							view.send(status,{message:message});
 							});
 							}

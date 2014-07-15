@@ -13,9 +13,18 @@ var test= require('./controllers/Test.js');
 
 //HTML
 ///request's JSON
-var firstLogIn=require('./controllers/FirstLogIn.js');
+var signUp=require('./controllers/SignUp.js');
 var inviteUser= require('./controllers/InviteUser.js');
 // request's JSON
+
+
+//util's
+var checkRole= require('./util/CheckRole.js');
+var checkInvitation= require('./util/checkInvitation.js');
+
+//util's
+
+// create DB connection
 var mongodb=null;
 mongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port + '/WD_Platform', function(err, db) {
 mongodb=db;
@@ -46,6 +55,7 @@ passport.use(new GoogleStrategy({
 
 
 function ensureAuthenticated(req, res, next) {
+
   if (req.isAuthenticated()) { 
     req.db=mongodb;
     return next(); }
@@ -88,27 +98,37 @@ app.get('/auth/google',
 app.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/' }),
   function(req, res) {
-
-    res.redirect('/log-in');
+    var email= req.user.emails[0].value;
+      console.log("Result os"+checkInvitation(mongodb,email));
+      if(checkRole(email)!==undefined)
+        res.redirect('/log-in');
+      else
+        res.redirect('/first-login');
   });
 
-app.all('/first-login',ensureAuthenticated,function(req,res,next){
-var page= new firstLogIn(req,res,next);
-page.run();
 
+
+app.all('/sign-up',ensureAuthenticated,function(req,res,next){
+var handler = new signUp(req,res,next)
+handler.run();
+});
+
+
+app.all('/first-login',ensureAuthenticated,function(req,res,next){
+res.render('test2.html');
 
 });
 
 
 app.all('/invite-user',ensureAuthenticated,function(req,res,next){
-  var page= new inviteUser(req,res,next);
-  page.run();
+  var handle= new inviteUser(req,res,next);
+  handle.run();
 });
 
 
 app.all('/log-in',function(req,res,next){
-  var page= new test(req,res,next);
-  page.run();
+  var handle= new test(req,res,next);
+  handle.run();
 
 });
 app.all('/log-out',ensureAuthenticated,function(req,res,next){
@@ -120,8 +140,8 @@ app.all('/log-out',ensureAuthenticated,function(req,res,next){
 
 
 app.all('/',function(req,res,next){
-  var page = new index(req,res,next);
-  page.run();
+  var handle = new index(req,res,next);
+  handle.run();
 });
 
 
