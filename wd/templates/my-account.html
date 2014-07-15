@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>WD Platform My Account</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../public/stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../public/stylesheets/dashboard.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <!-- NAVIGATION BAR -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">WD Platform</a>
+        </div>
+        <div class="navbar-collapse collapse" style="height: 1px;">
+          <ul class="nav navbar-nav navbar-right">
+            <div class="visible-xs nav navbar-nav navbar-right" style="padding-left: 15px">
+              <li><a href="dashboard.html">Dashboard</a></li>
+              <li><a href="available-projects.html">Available projects</a></li>
+              <li><a href="assigned-projects.html">Assigned projects</a></li>
+              <li><a href="new-project-form.html">New project form</a></li>
+              <li class="active"><a href="my-account.html">My account</a></li>
+            </div>
+            <li><a href="#">Log out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <!-- SIDE BAR -->
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><h3 style="margin-left: 20px; margin-bottom: 20px">FOR COLLABORATORS</h3></li>
+            <li><a href="dashboard.html">DASHBOARD</a></li>
+            <li><a href="available-projects.html">AVAILABLE PROJECTS</a></li>
+            <li><a href="assigned-projects.html">ASSIGNED PROJECTS</a></li>
+            <li><a href="new-project-form.html">NEW PROJECT FORM</a></li>
+            <li class="active"><a href="my-account.html">MY ACCOUNT</a></li>
+          </ul>
+        </div>
+
+        <!-- PAGE CONTENT -->
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header" style="font-weight: bold">MY ACCOUNT</h1>
+          <p style="text-align: center; margin-bottom: 30px">The information below is gathered from your Google account and is visible to Wiredelta Administrators and Collaborators.<br>If you wish to make any changes, please go to Account Settings in your Google Account</p>
+          <div class="row placeholders" style="margin-left: 10%; margin-right:10%">
+            <div class="col-xs-12 col-md-6 placeholder">
+              <a href="#"><button type="button" class="btn btn-default btn-xl">Go to your Google account</button></a>
+            </div>
+            <div class="col-xs-12 col-md-6 placeholder">
+              <a href="#"><button type="button" class="btn btn-default btn-xl">Go to your Agency Form</button></a>
+            </div>
+          </div>
+
+          <!--FORM GOES HERE-->
+          <form class="form-horizontal" role="form">
+            <div style="text-align:center" class="form-group">
+              <img src="../public/images/profileimage_u37.png" alt="Error loading image" class="img-thumbnail">
+            </div>
+            <div class="form-group">
+              <label for="inputName" class="col-sm-3 control-label">Name</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="inputName" placeholder="Prefilled by Google">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="dropdownCountry" class="col-sm-3 control-label">Current Country</label>
+              <div class="col-sm-6">
+                <select class="form-control">
+                  <option value="denmark">Denmark</option>
+                  <option value="france">France</option>
+                  <option value="...">...</option>
+                  <option value="...">...</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputCity" class="col-sm-3 control-label">Current City</label>
+              <div class="col-sm-6">
+                <select class="form-control">
+                  <option value="copenhagen">Copenhagen</option>
+                  <option value="paris">Paris</option>
+                  <option value="...">...</option>
+                  <option value="...">...</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputRole" class="col-sm-3 control-label">Role</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="inputRole" placeholder="Prefilled by Admins">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputOrg" class="col-sm-3 control-label">Supervisor/Organization</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="inputOrg" placeholder="Prefilled by Admins (Optional)">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputSkype" class="col-sm-3 control-label">Skype</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="inputSkype" placeholder="Editable">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12" style="text-align:center">
+                <button type="submit" class="btn btn-success btn-xl">SAVE</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- SCRIPTS -->
+    <script src="../public/javascripts/jquery-1.11.1.js"></script>
+    <script src="../public/javascripts/bootstrap.min.js"></script>
+  </body>
+</html>

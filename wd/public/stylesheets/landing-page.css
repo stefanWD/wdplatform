@@ -1,0 +1,51 @@
+body {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background: none;
+}
+
+html {
+	margin-bottom: 50px;
+}
+
+.full {
+  background: url(../images/wd-platform_landingpage_2v3.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#text {
+	color: white;
+	margin-top: 10%;
+	margin-right: 3%;
+}
+
+#title {
+	font-size: 48pt;
+	font-family: Arial;
+	text-align: center;
+	font-weight: bold;
+  margin-top: 56px;
+  margin-bottom: 56px;
+}
+
+#description {
+	font-size: 22pt;
+	font-family:'Muli';
+	text-align: center;
+}
+
+#onway {
+	display: none;
+}
+
+/*From Google Font API */
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Muli Light'), local('Muli-Light'), url(http://themes.googleusercontent.com/static/fonts/muli/v5/_fUwxgthNvUM9WCtMyMvbA.woff) format('woff');
+}
+
