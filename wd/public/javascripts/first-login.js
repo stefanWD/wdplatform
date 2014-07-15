@@ -9,13 +9,26 @@ $.ajax('http://localhost:8080/sign-up',{
 	success:function(data,xhr,xhr1){
 		$('#name').val(data.firstName+" "+data.lastName);
 		$('#name').before('<img style =\'width:90px; height:90px\' src='+data.pictureUrl+'>');
-		alert(data);
+		//alert(JSON.stringify(data));
 		
 	},
 	error:function(xhr,ajaxOptions,thrownError){
 		alert('error');
 	}
 });
+$.ajax('http://localhost:8080/get-cities',{
+	dataType:"json",
+		contentType:"applicaiton/json",
+		data:{country:'denmark'},
+	success:function(data,xhr,xhr1){
+		alert(JSON.stringify(data));
+		
+	},
+	error:function(xhr,ajaxOptions,thrownError){
+		alert('error');
+	}
+});
+
  });
 
 

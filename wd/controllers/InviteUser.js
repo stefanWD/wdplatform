@@ -1,8 +1,7 @@
 var controller = require('../controllers/Controller.js'),
 mail = require('../util/SendMail.js'),
 dataSender= require('../views/DataSender.js'),
-model= require('../models/ContentModel.js'),
-crypto = require('crypto');
+model= require('../models/ContentModel.js');
 
 function InviteUser(req,res,next){
 	controller.call(this,req,res,next);
@@ -33,7 +32,7 @@ value:function(){
 					});
 				}
 				else
-				{
+				{console.log(err);
 				view.sendErrorSystem();			
 				}
 			});

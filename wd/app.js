@@ -15,6 +15,7 @@ var test= require('./controllers/Test.js');
 ///request's JSON
 var signUp=require('./controllers/SignUp.js');
 var inviteUser= require('./controllers/InviteUser.js');
+var cities= require("./controllers/Cities.js");
 // request's JSON
 
 
@@ -99,13 +100,23 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   function(req, res) {
     var email= req.user.emails[0].value;
-      console.log("Result os"+checkInvitation(mongodb,email));
       if(checkRole(email)!==undefined)
         res.redirect('/log-in');
       else
-        res.redirect('/first-login');
+       checkInvitation(mongodb,email,function(result){
+        //if result is undefined it means an invitation has not been sent, so the user is unauthorized
+        if(result)
+          res.redirect('/first-login');
+        else
+          res.redirect('/log-out');
+       });
   });
 
+
+app.all('/get-cities',ensureAuthenticated,function(req,res,next){
+var page = new cities(req,res,next);
+page.run();
+});
 
 
 app.all('/sign-up',ensureAuthenticated,function(req,res,next){

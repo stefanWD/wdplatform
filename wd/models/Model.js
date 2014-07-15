@@ -1,6 +1,7 @@
 var collections={
 		1:"User",
-		2:"InvitesUser"
+		2:"InvitesUser",
+		3:"Location"
 	};
 
 function Model(db,collectionNo){

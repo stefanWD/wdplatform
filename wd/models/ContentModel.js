@@ -35,12 +35,22 @@ remove:{value: function(query, callback) {
 
 	},
 findOne:{
-	value:function(query,callback){
-		this.collection.findOne(query, function(err,result){
+	value:function(query,projections,callback){
+		this.collection.findOne(query,projections, function(err,result){
 			if(err)
 				callback(err)
 			else
 			callback(undefined,result);
+		});
+	},
+	enumerable:true,
+	configurable:false
+},
+find:{
+	value:function(query,projections,callback){
+		this.collection.find(query,projections).toArray(function(err,docs){
+			callback(err,docs);
+			
 		});
 	},
 	enumerable:true,
