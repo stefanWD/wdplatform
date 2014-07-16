@@ -9,8 +9,6 @@ ContentModel.prototype.constructor=ContentModel;
 Object.defineProperties(ContentModel.prototype,{
 save:{ value:function(query, callback) {
 	this.collection.save(query,{w:1},function(err,result){
-	console.log("Save error "+ err);
-	console.log("Save result "+result); 
 		if(err)
 			callback(err);
 			else
@@ -20,10 +18,17 @@ save:{ value:function(query, callback) {
 	enumerable:true,
 	configurable:false
 	},
+update:{ value:function(query,update,callback) {
+	this.collection.update(query,update,function(err,result){
+		callback(err,result);
+	});
+	},
+	enumerable:true,
+	configurable:false
+	}
+	,
 remove:{value: function(query, callback) {
 		this.collection.findAndModify(query, [], {}, {remove: true}, function(err,result){
-			console.log("Remove error: "+err);
-			console.log("Remove result:" +result);
 			if(err)
 				callback(err);
 			else

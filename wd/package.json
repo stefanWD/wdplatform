@@ -19,6 +19,7 @@
   "devDependencies": {"nodemon":"1.2.1"},
   "scripts": {
     "start": "nodemon app.js local",
+    "wd":"node app.js production",
     "test":"./node_modules/.bin/mocha"
   },
   "author": "Stefan",

@@ -2,7 +2,7 @@ var model = require("../models/ContentModel.js");
 
 function checkInvitation(db,email,callback){
 var m= new model(db,2);
-m.findOne({_id:email},function(err,result){
+m.findOne({_id:email},{},function(err,result){
 if(err)
 	callback(undefined);
 else
@@ -17,13 +17,25 @@ else
 			callback(undefined);
 		});
 	}else
-		{callback(result);
+		{
+		var m2= new model(db,1);
+
+		m2.save({_id:email,country:"",city:"",role:"",supervisor:"",skype:""},function(err,result2)
+		{if(err)
+			callback(undefined);
+			else
+			{callback(result);
+
+				//removes User from invite list, since he is logged in
+			m.remove({_id:email},function(err,result){			
+			if(err)
+				callback(undefined);
+			});
+			}
+		});
 		}
 	}
-
 });
-
-
 }
 
 

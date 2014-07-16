@@ -17,7 +17,7 @@ value:function(){
 	var m = new model(this.req.db,2);
 	if(this.req.accepts('application/json')==='application/json')
 		{if(/\S+@gmail.com/.test(email)===true)
-		{m.save({_id:email,date:(new Date())},function(err){
+		{m.save({_id:email,date:(new Date()),country:"",city:"",role:"",supervisor:"",skype:""},function(err){
 			if(err===undefined){
 				var reso=this.res;
 					mail(email,function(status,message){	

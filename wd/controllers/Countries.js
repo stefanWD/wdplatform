@@ -12,13 +12,10 @@ getCities.prototype.constructor=getCities;
 Object.defineProperty(getCities.prototype,"run",
 {value:function(){
 	var view = new dataSender(this.res);
-	try{var country = this.req.query.country.toLowerCase();
+	try{
 		var m= new model(this.req.db,3);
-		if(!country)
-			view.send(202,{message:"Please give a valid country."});
-		else
-		if(this.req.accepts('application/json')==='application/json'||2===2){
-			m.findOne({country:country},{cities:1},function(err,result){
+		if(this.req.accepts('application/json')==='application/json'){
+			m.find({},{country:1,capital:1},function(err,result){
 			if( err)
 				view.sendErrorSystem();
 			else
@@ -26,8 +23,7 @@ Object.defineProperty(getCities.prototype,"run",
 			});
 		}
 		else
-		{
-			view.sendErrorContent();
+		{view.sendErrorContent();
 		}
 	
 	}

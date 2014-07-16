@@ -10,7 +10,7 @@ Test.prototype.constructor=Test;
 
 Object.defineProperty(Test.prototype,"run",{
 value:function(){
-	var view= new sendData(this.res,"test.html");
+	var view= new sendData(this.res,"FrontEnd/WD.html");
 if(this.req.accepts('html')==='html')
 {try{
 	view.send({});

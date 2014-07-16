@@ -13,21 +13,23 @@ var test= require('./controllers/Test.js');
 
 //HTML
 ///request's JSON
-var signUp=require('./controllers/SignUp.js');
+var userAccount=require('./controllers/UserAccount.js');
 var inviteUser= require('./controllers/InviteUser.js');
 var cities= require("./controllers/Cities.js");
+var countries= require("./controllers/Countries.js");
+var editMyAccountUser=require("./controllers/EditUserAccount.js");
 // request's JSON
 
 
 //util's
 var checkRole= require('./util/CheckRole.js');
-var checkInvitation= require('./util/checkInvitation.js');
+var checkInvitation= require('./util/CheckInvitation.js');
 
 //util's
 
 // create DB connection
 var mongodb=null;
-mongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port + '/WD_Platform', function(err, db) {
+mongoClient.connect('mongodb://dev.wiredelta.com:3100', function(err, db) {
 mongodb=db;
 });
 
@@ -100,11 +102,12 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   function(req, res) {
     var email= req.user.emails[0].value;
-      if(checkRole(email)!==undefined)
+      if(checkRole(email)===undefined)
         res.redirect('/log-in');
       else
        checkInvitation(mongodb,email,function(result){
         //if result is undefined it means an invitation has not been sent, so the user is unauthorized
+        console.log(result);
         if(result)
           res.redirect('/first-login');
         else
@@ -113,33 +116,44 @@ app.get('/auth/google/callback',
   });
 
 
+app.all('/get-countries',ensureAuthenticated,function(req,res,next){
+var controller = new countries(req,res,next);
+controller.run();
+});
+
 app.all('/get-cities',ensureAuthenticated,function(req,res,next){
-var page = new cities(req,res,next);
-page.run();
+var controller = new cities(req,res,next);
+controller.run();
 });
 
 
 app.all('/sign-up',ensureAuthenticated,function(req,res,next){
-var handler = new signUp(req,res,next)
-handler.run();
+var controller = new userAccount(req,res,next);
+controller.run();
 });
 
+
+app.all('/edit-myaccount-user',ensureAuthenticated,function(req,res,next){
+var controller = new editMyAccountUser(req,res,next);
+controller.run();
+});
 
 app.all('/first-login',ensureAuthenticated,function(req,res,next){
-res.render('test2.html');
+res.render('my-account.html');
 
 });
 
 
-app.all('/invite-user',ensureAuthenticated,function(req,res,next){
-  var handle= new inviteUser(req,res,next);
-  handle.run();
+app.all('/invite-user',function(req,res,next){
+  var controller= new inviteUser(req,res,next);
+  req.db=mongodb;
+  controller.run();
 });
 
 
 app.all('/log-in',function(req,res,next){
-  var handle= new test(req,res,next);
-  handle.run();
+  var controller= new test(req,res,next);
+  controller.run();
 
 });
 app.all('/log-out',ensureAuthenticated,function(req,res,next){
@@ -169,7 +183,7 @@ app.use(function(err, req, res, next) {
 
 
 
-
-app.listen(config.port);
+console.log(config.port+''+config.host);
+app.listen(config.port,config.host);
 //https.createServer(options,app).listen(8080);
 //module.exports = app;

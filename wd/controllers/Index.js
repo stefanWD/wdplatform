@@ -1,5 +1,5 @@
-var controller = require('../controllers/Controller.js');
-var sendData= require('../views/DataSenderHTML.js');
+var controller = require('../controllers/Controller.js'),
+sendData= require('../views/DataSenderHTML.js');
 
 function Index(req,res,next){
 controller.call(this,req,res,next);
