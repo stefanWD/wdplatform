@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html class="full" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>WD Platform Landing Page</title>
+
+    <link href="../public/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="../public/stylesheets/landing-page.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid" id="text">
+        <div class="row">
+            <div class="col-lg-6 col-sm-12" style="float:right">
+                <p id="title">WD PLATFORM</p>
+		        <p id="description">In WD Platform, the best designers choose you, <br>so you can worry about all the small stuff</p>
+		        <br><br>
+		        <div align="center">
+		        	<a href="#" id="signup"><img src="../public/images/signup.jpg"></a>
+                    <a href="#" id="onway"><img src="../public/images/onway.jpg"></a>
+		        </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../public/javascripts/jquery-1.11.1.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			$("#signup, #onway").click(function()	{
+		    	$("#signup").toggle();
+		    	$("#onway").toggle();
+		  	});
+		});
+	</script>
+</body>
+
+</html>
