@@ -120,3 +120,18 @@ body {
   line-height: 1;
   border-radius: 0px;
 }
+
+.section-header {
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.section-div {
+
+  margin-bottom: 15px; 
+  margin-top: 30px;
+}
+ 
+a {
+  color:inherit;
+}
