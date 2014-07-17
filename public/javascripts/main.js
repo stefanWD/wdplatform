@@ -1,16 +1,36 @@
-  angular.module('wdplatform', ['ngResource'])
-  .config(function ($routeProvider, $locationProvider) {
-    // Set up our routes
-    $routeProvider
-      .when('/log-in', {
-        controller: 'Table',
-        templateUrl: '/UserMenu.html'
-      });
-    // Use HTML5 mode (History API) when changing URL
-    $locationProvider.html5Mode(true);
-  })
-  .controller('Table', function ($scope, $resource, Contact) {
-    // Use the $resource query method to grab all contacts
-    $scope.contacts = Contact.query();
-  });
-  
+
+var app=angular.module('wdplatform',['ui.router']);
+app.config(function($stateProvider, $urlRouterProvider) {
+$stateProvider
+.state('panel',{
+  url:'',
+  views:{
+    'nav':{
+      templateUrl:'User/UserNav.html'
+    },
+    'nav-side':{
+      templateUrl:'User/UserNavSide.html'
+    },
+    'content':{
+      controller:'GetAccount',
+      templateUrl:'User/UserAccount.html'
+    }
+  }
+});
+
+});
+
+app.controller('GetAccount', function($scope,$http) {
+     $http({method: 'Post',
+      url: '/user-account'
+    
+    }).
+    success(function(data, status, headers, config) {
+      alert(data);
+    }).
+    error(function(data, status, headers, config) {
+
+    });
+
+    
+});

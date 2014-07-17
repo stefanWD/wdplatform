@@ -16,7 +16,7 @@ UserAccount.prototype.constructor=UserAccount;
 Object.defineProperty(UserAccount.prototype,"run",{
 value:function(){
 
-var view = new sendData(this.res);
+var view = new dataSender(this.res);
 try{
 	if(this.req.accepts('application/json')==='application/json')
 	{	var user=this.req.user;

@@ -71,10 +71,10 @@ var app = express();
 
 // view engine setup
 
-app.set('views', path.join(__dirname, 'templates'));
+app.set('views', path.join(__dirname, 'html'));
 app.engine('html', require('ejs').renderFile);
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'templates/sections')));
+app.use(express.static(path.join(__dirname, 'html/sections')));
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -100,7 +100,7 @@ app.get(config.googlePath,
   function(req, res) {
     var email= req.user.emails[0].value;
       if(checkRole(email)===undefined)
-        res.redirect('/log-in');
+        res.redirect('/panel');
       else
        checkInvitation(mongodb,email,function(result){
         //if result is undefined it means an invitation has not been sent, so the user is unauthorized
@@ -142,7 +142,7 @@ app.all('/invite-user',function(req,res,next){
 });
 
 
-app.all('/log-in',function(req,res,next){
+app.all('/panel',function(req,res,next){
   var controller= new test(req,res,next);
   controller.run();
 

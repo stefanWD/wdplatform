@@ -1,5 +1,5 @@
 <!Doctype html>
-<html>
+<html >
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -28,16 +28,32 @@
           <a class="navbar-brand" href="#">WD Platform</a>
         </div>
         <div class="navbar-collapse collapse" style="height: 1px;">
-              <div ui-view='nav'></div>
+          <ul class="nav navbar-nav navbar-right">
+            <div class="visible-xs nav navbar-nav navbar-right" style="padding-left: 15px">
+              <li><a href="dashboard.html">Dashboard</a></li>
+              <li><a href="available-projects.html">Available projects</a></li>
+              <li><a href="assigned-projects.html">Assigned projects</a></li>
+              <li><a href="new-project-form.html">New project form</a></li>
+              <li class="active"><a href="my-account.html">My account</a></li>
+            </div>
+            <li><a href="#">Log out</a></li>
+          </ul>
         </div>
       </div>
     </div>
 
     <div class="container-fluid">
       <div class="row">
-          <div ui-view='nav-side'></div>
-          <div ui-view='content'></div>
       </div>
+ <li><a ui-sref="about">About</a></li>
+
+
+
+      <div ui-view='menu'></div>
+      <div ui-view='content'></div>
+
+
+
     </div>
 
   <!-- SCRIPTS -->
@@ -45,7 +61,39 @@
 <script src='bower_components/angular-ui-router/release/angular-ui-router.js'></script>
 <script src='javascripts/jquery-1.11.1.js'></script>
 <script src='javascripts/bootstrap.min.js'></script>
-<script src='javascripts/main.js'></script>        
+   <script>
+
+
+var app=angular.module('wdplatform',['ui.router']);
+app.config(function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/home');
+    
+    $stateProvider
+        .state('about', {
+            // we'll get to this in a bit       
+        })
+.state('panel',{
+  url:'/panel',
+  views:{
+    controller:'Menu',
+    'menu@panel':{
+      templateUrl:'UserMenu.html'
+    },
+    'content@panel':{
+
+      templateUrl:'UserAccount.html'
+    }
+  }
+});
+
+});
+
+app.controller('Menu', function($scope) {
+    
+alert('das');
+    
+});
+   </script>        
   </body>
 </html>
 
