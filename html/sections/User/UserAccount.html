@@ -14,7 +14,7 @@
           <!--FORM GOES HERE-->
           <form class="form-horizontal" role="form">
             <div style="text-align:center" class="form-group">
-              <img ng-src="{{pictureUrl}}" alt="Error loading image" class="img-thumbnail">
+              <img ng-src="{{pictureUrl}}" alt="Error loading image" class="img-thumbnail" style="max-width: 300px;max-heigth: 300px">
             </div>
             <div class="form-group">
               <label for="inputName" class="col-sm-3 control-label">Name</label>
@@ -41,19 +41,19 @@
             <div class="form-group">
               <label for="inputRole"  class="col-sm-3 control-label">Role</label>
               <div class="col-sm-6">
-                <input type="text"  ng-model='role' class="form-control" id="inputRole" placeholder="Prefilled by Admins">
+                <input type="text"  ng-model='role' class="form-control" id="inputRole" placeholder="Enter your role">
               </div>
             </div>
             <div class="form-group">
               <label for="inputOrg"  class="col-sm-3 control-label">Supervisor/Organization</label>
               <div class="col-sm-6">
-                <input type="text" ng-model='supervisor' class="form-control" id="inputOrg" placeholder="Prefilled by Admins (Optional)">
+                <input type="text" ng-model='supervisor' class="form-control" id="inputOrg" placeholder="Enter your organization (Optional)">
               </div>
             </div>
             <div class="form-group">
               <label for="inputSkype"  class="col-sm-3 control-label">Skype</label>
               <div class="col-sm-6">
-                <input type="text" ng-model='skype' class="form-control" id="inputSkype" placeholder="Editable">
+                <input type="text" ng-model='skype' class="form-control" id="inputSkype" placeholder="Enter your Skype name">
               </div>
             </div>
             <div class="form-group">
