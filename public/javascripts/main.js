@@ -22,11 +22,20 @@ $stateProvider
 
 app.controller('GetAccount', function($scope,$http) {
      $http({method: 'Post',
-      url: '/user-account'
+      url: '/user-account',
+      headers: {'Content-type': 'application/json'}
     
     }).
     success(function(data, status, headers, config) {
-      alert(data);
+      $scope.name=data.firstName+' '+data.lastName;
+      $scope.countries=['A','B','C'];
+      $scope.cities=['C','D'];
+      $scope.role=data.role;
+      $scope.supervisor=data.supervisor;
+      $scope.skype=data.skype;
+      $scope.gmailAccountUrl=data.gmailAccountUrl;
+      $scope.pictureUrl = data.pictureUrl;
+      console.log(data.pictureUrl);
     }).
     error(function(data, status, headers, config) {
 

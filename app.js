@@ -99,13 +99,13 @@ app.get(config.googlePath,
   passport.authenticate('google', { failureRedirect: '/' }),
   function(req, res) {
     var email= req.user.emails[0].value;
-      if(checkRole(email)===undefined)
+      if(checkRole(email)!==undefined)
         res.redirect('/panel');
       else
        checkInvitation(mongodb,email,function(result){
         //if result is undefined it means an invitation has not been sent, so the user is unauthorized
         if(result)
-          res.redirect('/first-login');
+          res.redirect('/panel');
         else
           res.redirect('/log-out');
        });
@@ -118,7 +118,7 @@ controller.run();
 });
 
 
-app.all('/sign-up',ensureAuthenticated,function(req,res,next){
+app.all('/user-account',ensureAuthenticated,function(req,res,next){
 var controller = new userAccount(req,res,next);
 controller.run();
 });

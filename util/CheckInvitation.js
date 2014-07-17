@@ -20,7 +20,7 @@ else
 		{
 		var m2= new model(db,1);
 
-		m2.save({_id:email,country:"",city:"",role:"",supervisor:"",skype:""},function(err,result2)
+		m2.save({_id:email,country:"a",city:"a",role:"a",supervisor:"a",skype:"a"},function(err,result2)
 		{if(err)
 			callback(undefined);
 			else

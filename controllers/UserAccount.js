@@ -15,9 +15,8 @@ UserAccount.prototype.constructor=UserAccount;
 
 Object.defineProperty(UserAccount.prototype,"run",{
 value:function(){
-
 var view = new dataSender(this.res);
-try{
+try{console.log(this.req.accepts());
 	if(this.req.accepts('application/json')==='application/json')
 	{	var user=this.req.user;
 		var firstName=user.name.familyName;
@@ -30,7 +29,7 @@ try{
 		var profile={firstName:firstName,lastName:lastName,email:email,pictureUrl:pictureUrl,gmailAccountUrl:gmailAccountUrl};
 		
 		m.findOne({'_id':email},{},function(err,result){
-			if(err)
+			if(err||!result)
 				view.sendErrorSystem();
 			else
 			{profile.skype=result.skype;
