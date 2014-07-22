@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html class="full" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>WD Platform Landing Page</title>
+
+    <!-- <link href="../public/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="../public/stylesheets/landing-page.css" rel="stylesheet"> -->
+    <link href="stylesheets/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-12" id="textDiv">
+                <p id="title">WD PLATFORM</p>
+		        <p id="description">In WD Platform, the best designers choose you, <br>so you can worry about all the small stuff</p>
+		        <br><br>
+		        <div align="center">
+		        	<a href="#" id="signup"><img src="images/signup.jpg"></a>
+                    <a href="#" id="onway"><img src="images/onway.jpg"></a>
+		        </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="javascripts/jquery-1.11.1.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			$("#signup, #onway").click(function()	{
+		    	$("#signup").toggle();
+		    	$("#onway").toggle();
+		  	});
+
+            // TEMPORARY JSCRIPT FOR NAVIGATION
+            $("#signup, #onway").click(function()   {
+                var r = confirm("Continue as ADMIN? (Cancel to continue as USER)");
+                if (r == true) {
+                    location = "user-management.html";
+                } else {
+                    location = "my-account.html";
+                }
+            });
+		});
+	</script>
+</body>
+
+</html>
